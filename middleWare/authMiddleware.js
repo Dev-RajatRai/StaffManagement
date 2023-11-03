@@ -1,5 +1,5 @@
 import JWT from 'jsonwebtoken';
-import userModal from '../Modal/userModal.js';
+import userModal from '../Modal/employeeModal.js';
 
 
 export const requireSignIn = async (req, res, next) => {
@@ -17,10 +17,10 @@ export const requireSignIn = async (req, res, next) => {
     }
 }
 
-export const IsAdmin = async (req, res, next) => {
+export const IsSuperAdmin = async (req, res, next) => {
     try {
         const admin = await userModal.findById(req.user._id);
-        if (admin.role !== 1) {
+        if (admin.role !== 2) {
             return res.status(404).send({
                 success: false,
                 massage: "unauthorize Access",

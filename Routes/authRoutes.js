@@ -1,6 +1,6 @@
 import express from 'express';
 import { forgotpasswordController, getAllOrdersController, getOrdersController, loginController, orderStatusController, registerController, testControllers, updateProfileController, } from '../Controlers/authControllers.js'
-import { IsAdmin, requireSignIn } from '../middleWare/authMiddleware.js';
+import { IsSuperAdmin, requireSignIn } from '../middleWare/authMiddleware.js';
 // Router Object 
 const router = express.Router();
 
@@ -17,14 +17,14 @@ router.post("/forgot-password", forgotpasswordController);
 
 
 // Test Routes
-router.get("/test", requireSignIn, IsAdmin, testControllers);
+router.get("/test", requireSignIn, IsSuperAdmin, testControllers);
 
 // Protected Routes for user Auth
 router.get("/user-auth", requireSignIn, (req, res) => {
     res.status(200).send({ ok: true });
 });
 // Protected Routes for user Auth
-router.get("/admin-auth", requireSignIn, IsAdmin, (req, res) => {
+router.get("/admin-auth", requireSignIn, IsSuperAdmin, (req, res) => {
     res.status(200).send({ ok: true });
 });
 
@@ -35,9 +35,9 @@ router.put('/update-user', requireSignIn, updateProfileController);
 router.get("/orders", requireSignIn, getOrdersController);
 
 //all orders
-router.get("/all-orders", requireSignIn, IsAdmin, getAllOrdersController);
+router.get("/all-orders", requireSignIn, IsSuperAdmin, getAllOrdersController);
 
 // order status update
-router.put("/order-status/:orderId", requireSignIn, IsAdmin, orderStatusController
+router.put("/order-status/:orderId", requireSignIn, IsSuperAdmin, orderStatusController
 );
 export default router

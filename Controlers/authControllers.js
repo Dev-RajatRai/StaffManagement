@@ -1,12 +1,12 @@
 import { ComparePassword, HashPassword } from "../Helpers/authHelper.js";
 import orderModle from "../Modal/orderModle.js";
-import userModal from "../Modal/userModal.js"
+import employeeModal from "../Modal/employeeModal.js"
 import JWT from 'jsonwebtoken'
 
 
 export const registerController = async (req, res) => {
     try {
-        const { name, email, password, phone, address, answer } = req.body;
+        const { name, email, password, phone, address, answer, role, department } = req.body;
         if (!name) {
             return res.send({ massage: "name is required" })
         }
@@ -19,6 +19,9 @@ export const registerController = async (req, res) => {
         if (!phone) {
             return res.send({ massage: "phone no. is required" })
         }
+        if (!role) {
+            return res.send({ massage: role })
+        }
         if (!answer) {
             return res.send({ massage: "answer is required" })
         }
@@ -26,7 +29,7 @@ export const registerController = async (req, res) => {
             return res.send({ massage: "address is required" })
         }
         // check existing user
-        const existingUser = await userModal.findOne({ email });
+        const existingUser = await employeeModal.findOne({ email });
         // existing user 
         if (existingUser) {
             return res.status(200).send({
@@ -37,7 +40,7 @@ export const registerController = async (req, res) => {
         // hashpassword
         const hashedPassword = await HashPassword(password)
         // ragisterUser
-        const user = await new userModal({ name, email, password: hashedPassword, phone, address, answer }).save();
+        const user = await new employeeModal({ name, email, password: hashedPassword, phone, address, answer, role, department }).save();
         res.status(201).send({
             success: true,
             massage: "succesfully ragistered",
@@ -66,7 +69,7 @@ export const loginController = async (req, res) => {
             })
         }
         // find User
-        const user = await userModal.findOne({ email });
+        const user = await employeeModal.findOne({ email });
         if (!user) {
             return res.status(404).send({
                 success: false,
@@ -122,7 +125,7 @@ export const forgotpasswordController = async (req, res) => {
         }
 
         // Check
-        const user = await userModal.findOne({ email, answer });
+        const user = await employeeModal.findOne({ email, answer });
         if (!user) {
             return res.status(404).send({
                 success: false,
@@ -130,7 +133,7 @@ export const forgotpasswordController = async (req, res) => {
             })
         }
         const hashed = await HashPassword(newPassword);
-        await userModal.findByIdAndUpdate(user._id, { password: hashed });
+        await employeeModal.findByIdAndUpdate(user._id, { password: hashed });
         res.status(200).send({
             success: true,
             message: "password changed succesfully"
@@ -158,13 +161,13 @@ export const testControllers = (req, res) => {
 export const updateProfileController = async (req, res) => {
     try {
         const { name, password, address, phone } = req.body;
-        const user = await userModal.findById(req.user._id);
+        const user = await employeeModal.findById(req.user._id);
         //password
         if (password && password.length < 6) {
             return res.json({ error: "Passsword is required and 6 character long" });
         }
         const hashedPassword = password ? await HashPassword(password) : undefined;
-        const updatedUser = await userModal.findByIdAndUpdate(
+        const updatedUser = await employeeModal.findByIdAndUpdate(
             req.user._id,
             {
                 name: name || user.name,

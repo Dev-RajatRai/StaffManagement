@@ -1,35 +1,24 @@
 import mongoose from "mongoose";
 
-const ProductSchema = new mongoose.Schema({
+const EmployeeSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
         trim: true
     },
-    discription: {
+    email: {
         type: String,
         required: true,
         unique: true
     },
-    price: {
+    pan: {
         type: Number,
         required: true,
     },
-    quantity: {
-        type: Number,
-        required: true,
-    },
-    slug: {
-        type: String,
-        required: true
-    },
-    category: {
+    department: {
         type: mongoose.ObjectId,
-        ref: "category",
+        ref: "department",
         required: true
-    },
-    shipping: {
-        type: Boolean
     },
     photo: {
         data: Buffer,
@@ -40,4 +29,4 @@ const ProductSchema = new mongoose.Schema({
 }
 )
 
-export default mongoose.model("Product", ProductSchema)
+export default mongoose.model("employee", EmployeeSchema)

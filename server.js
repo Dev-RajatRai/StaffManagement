@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import morgan from 'morgan'
 import connectDb from "./config/db.js";
 import authRoutes from "./Routes/authRoutes.js"
-import categoryRoutes from './Routes/categoryRoutes.js'
+import departmentRoutes from './Routes/departmentRoutes.js'
 import productRoutes from "./Routes/productRoutes.js"
 import cors from "cors"
 import path from "path";
@@ -29,8 +29,8 @@ app.use(express.static(path.join(__dirname, "./client/build")))
 
 // Routes
 app.use("/api/auth", authRoutes);
-app.use("/api/category", categoryRoutes);
-app.use("/api/product", productRoutes)
+app.use("/api/department", departmentRoutes);
+app.use("/api/employee", productRoutes)
 
 
 // Rest api
