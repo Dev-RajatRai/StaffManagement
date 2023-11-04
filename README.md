@@ -27,11 +27,12 @@ Below are the Functionality of the Manager:-
     Many more Functions are implemented 
 
 Below Are the Functionality of the Employee:-
+
     1. Employee can create the account on the basis of the department
     2. Employee can see the Details of itself only 
     3. Employee can Update the password of itself
     and many more functions 
 
-Made By Rajat Rai
+# Made By Rajat Rai
 
     
