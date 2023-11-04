@@ -78,7 +78,7 @@ const Createdepartment = () => {
         }
     }
     return (
-        <Layout title={"Create-department Ecommerce-app"}>
+        <Layout title={"Create-department "}>
             <div className="container-fluid m-3 p-3">
                 <div className='row'>
                     <div className='col-md-3'>

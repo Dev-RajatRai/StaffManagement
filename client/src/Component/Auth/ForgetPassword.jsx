@@ -31,7 +31,7 @@ const ForgetPassword = () => {
         }
     }
     return (<>
-        <Layout title={"Forget-Password Ecommerce-App"}>
+        <Layout title={"Forget-Password "}>
 
             <div className="form-container">
                 <form onSubmit={submitHandler}>

@@ -68,7 +68,7 @@ const UpdateEmployee = () => {
         }
     }
     return (
-        <Layout title={"Update-employees Ecommerce-app"}>
+        <Layout title={"Update-employees "}>
             <div className="container-fluid m-3 p-3">
 
                 <div className='row'>

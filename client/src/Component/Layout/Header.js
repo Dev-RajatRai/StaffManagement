@@ -41,7 +41,7 @@ const Header = () => {
                 <>
 
 
-                  <ul className="navbar-nav mb-2 mb-lg-0" style={{ marginLeft: "45%" }}>
+                  <ul className="navbar-nav mb-2 mb-lg-0" style={{ marginLeft: "35%" }}>
                     {
                       auth?.user?.role === 2 ?
                         <>
