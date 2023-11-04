@@ -10,6 +10,7 @@ There is Two Levels of the Staff.
 Employee and Manager Can Create there Account on SingnUp Page and Login Via using there Crendials 
 
 Below are the Functionality of the Manager:-
+
     1. Manager can create Department.
     2. Manager can Read the Department
     3. Manager Can Remove the Department
