@@ -56,7 +56,7 @@ const Header = () => {
                       </Link>
                       <ul className="dropdown-menu">
                         <li>
-                          <Link to={"/"} className="dropdown-item">All Products</Link>
+                          <Link to={"/alldepartment"} className="dropdown-item">All Products</Link>
                         </li>
                         {
                           departments?.map((item) => {

@@ -17,6 +17,8 @@ import Createdepartment from './Pages/Admin/CreateDepartment';
 import AllEmployees from './Pages/Admin/AllEmployees';
 import Search from './Pages/Search';
 import DepartmentwiseEmployee from './Pages/DepartmentEmployees';
+import AllDepartment from './Pages/AllDepartment';
+import ForgetPassword from './Component/Auth/ForgetPassword';
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/search" element={<Search />} />
         <Route path="/employees" element={<EmployeeList />} />
+        <Route path="/alldepartment" element={<AllDepartment />} />
+        <Route path="/forget-password" element={<ForgetPassword />} />
         <Route path="/dashboard" element={<PrivateRoute />} >
           <Route path="user" element={<Dashboard />} />
           {/* <Route path="user/profile" element={<UserProfile />} />

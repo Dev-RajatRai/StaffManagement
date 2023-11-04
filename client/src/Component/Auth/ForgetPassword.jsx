@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import Layout from "../../components/Layout/Layout";
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Layout from "../Layout/Layout";
 
 
 const ForgetPassword = () => {
@@ -16,13 +16,10 @@ const ForgetPassword = () => {
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(`/api/v1/auth/forgot-password`, { email, newPassword, answer })
+            const res = await axios.post(`/api/auth/forgot-password`, { email, newPassword, answer })
             if (res && res.data.success) {
-                console.log(res);
-
-
-                navigate('/login')
-                toast.success(res.data.massage);
+                toast.success(res.data.massage)
+                    .then(navigate('/'))
 
             } else {
                 toast.error(res.data.massage)
@@ -38,7 +35,7 @@ const ForgetPassword = () => {
 
             <div className="form-container">
                 <form onSubmit={submitHandler}>
-                    <div className="mb-3"><h1>Login Now</h1></div>
+                    <div className="mb-3"><h1>Forgot Password ?</h1></div>
 
                     <div className="mb-3" >
                         <input type="email"
@@ -67,10 +64,6 @@ const ForgetPassword = () => {
                             id="exampleInputPassword1"
                             required />
                     </div>
-                    <div className="mb-3" >
-                        <button className="btn btn-primary" onClick={() => navigate("/forget-password")}>Reset</button>
-                    </div>
-
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
             </div>

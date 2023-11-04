@@ -121,7 +121,7 @@ const Register = () => {
                             required />
                     </div>
                     <div className="mb-3">
-                        <button type="submit" className="btn btn-primary">Submit</button>
+                        <button type="submit" className="btn btn-primary">Sign Up</button>
                     </div>
                     <Link to={"/"}>Existing User?</Link>
                 </form>
