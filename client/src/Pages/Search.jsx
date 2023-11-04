@@ -10,11 +10,11 @@ const Search = () => {
     const navigate = useNavigate();
     return (
 
-        <Layout title={"Search Product Ecommerce-app"}>
+        <Layout title={"Search Employee"}>
             <div className="container">
                 <div className="text-center d-flex similar-products
                 flex-wrap">
-                    {value?.results.map((p) => (
+                    {value.results.length > 0 ? value?.results.map((p) => (
                         < div className="card m-2" key={p?._id} style={{ width: "18rem" }}>
 
                             <div className="card-body">
@@ -23,12 +23,13 @@ const Search = () => {
 
                             </div>
                             <div className="btn">
-                                <button className="btn btn-primary ms-1" onClick={() => navigate(`/employee/${p.slug}`)}>More Details </button>
+                                <button className="btn btn-primary ms-1" onClick={() => navigate(`/employee/${p._id}`)}>More Details </button>
 
                             </div>
                         </div>
 
-                    ))}
+                    ))
+                        : 'No Data Found'}
                 </div>
             </div>
         </Layout>

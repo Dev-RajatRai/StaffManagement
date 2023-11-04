@@ -4,7 +4,7 @@ import morgan from 'morgan'
 import connectDb from "./config/db.js";
 import authRoutes from "./Routes/authRoutes.js"
 import departmentRoutes from './Routes/departmentRoutes.js'
-import productRoutes from "./Routes/productRoutes.js"
+import employeeRoutes from "./Routes/employeeRoutes.js"
 import cors from "cors"
 import path from "path";
 import { fileURLToPath } from "url";
@@ -30,7 +30,7 @@ app.use(express.static(path.join(__dirname, "./client/build")))
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/department", departmentRoutes);
-app.use("/api/employee", productRoutes)
+app.use("/api/employee", employeeRoutes)
 
 
 // Rest api

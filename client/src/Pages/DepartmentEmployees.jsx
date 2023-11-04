@@ -23,31 +23,43 @@ function DepartmentwiseEmployee() {
     }
     useEffect(() => {
         employeeDepartment();
-    }, [])
+    }, [Params])
     return (
         <Layout title={"employee-Employee"}>
             <div className="container">
                 <div className="text-center mt-3">
-                    Items Of The Categoey Of {(department?.name)?.toUpperCase()}
+                    Employees Of the Deaprtment: {(department?.name)?.toUpperCase()}
                 </div>
-                <div className="d-flex flex-wrap container-fluid similar-Employee">
+                {
+                    employee ?
+                        <div className="d-flex flex-wrap container-fluid similar-Employee">
+                            <table className="table table-bordered border-primary">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Address</th>
+                                        <th scope="col">Department</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {employee?.map(e => (
 
-                    {employee?.map((p) => (
-                        < div className="card m-2" key={p?._id} style={{ width: "18rem" }}>
+                                        <tr key={e._id}>
+                                            <td >{e.name}</td>
+                                            <td >{e.address}</td>
+                                            <td >{e.department}</td>
+                                            <td>
+                                                <button className="btn btn-primary ms-1" onClick={() => navigate(`/employee/${e?._id}`)}>More Details </button>
 
-                            <div className="card-body">
-                                <h5 className="card-title">{p?.name?.substring(0, 15)}...</h5>
-                                <p className="card-text">{p?.department?.substring(0, 30)}</p>
-                                <p className="card-text">{p.address}</p>
-                            </div>
-                            <div className="btn">
-                                <button className="btn btn-primary ms-1" onClick={() => navigate(`/product/${p?.slug}`)}>More Details </button>
+                                            </td>
+                                        </tr>
+                                    ))}
 
-                            </div>
+                                </tbody>
+                            </table>
                         </div>
-
-                    ))}
-                </div>
+                        : "There is No Employee in this Deaprtment"}
             </div>
         </Layout>
     )

@@ -9,10 +9,10 @@ const AdminMenu = () => {
                 <div className="list-group">
 
                     <NavLink to="/dashboard/admin/create-department" className="list-group-item list-group-item-action">Create Department</NavLink>
-                    <NavLink to="/dashboard/admin/create-products" className="list-group-item list-group-item-action">Create Products</NavLink>
-                    <NavLink to="/dashboard/admin/users" className="list-group-item list-group-item-action">Users</NavLink>
-                    <NavLink to="/dashboard/admin/employee" className="list-group-item list-group-item-action">All Products</NavLink>
-                    <NavLink to="/dashboard/admin/orders" className="list-group-item list-group-item-action">All Orders</NavLink>
+
+
+                    <NavLink to="/dashboard/admin/employee" className="list-group-item list-group-item-action">All Employees</NavLink>
+
                 </div>
             </div>
         </>

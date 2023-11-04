@@ -1,8 +1,6 @@
 import { ComparePassword, HashPassword } from "../Helpers/authHelper.js";
-import orderModle from "../Modal/orderModle.js";
 import employeeModal from "../Modal/employeeModal.js"
 import JWT from 'jsonwebtoken'
-
 
 export const registerController = async (req, res) => {
     try {
@@ -21,6 +19,9 @@ export const registerController = async (req, res) => {
         }
         if (!role) {
             return res.send({ massage: role })
+        }
+        if (!department) {
+            return res.send({ massage: "Department is Required" })
         }
         if (!answer) {
             return res.send({ massage: "answer is required" })
@@ -56,7 +57,7 @@ export const registerController = async (req, res) => {
     }
 }
 
-// Login || POST
+// Login Controller
 
 export const loginController = async (req, res) => {
     try {
@@ -76,7 +77,7 @@ export const loginController = async (req, res) => {
                 massage: "user not found"
             });
         }
-        // Password match
+        // Password matching
         const matchPass = await ComparePassword(password, user.password)
         if (!matchPass) {
             return res.status(200).send({
@@ -89,7 +90,7 @@ export const loginController = async (req, res) => {
             expiresIn: "7d"
         })
 
-        // Succesfully logedIN 
+        // Succesfully loged IN 
         res.status(200).send({
             success: true,
             massage: "suceesfully logIn",
@@ -110,7 +111,7 @@ export const loginController = async (req, res) => {
         })
     }
 }
-// forgotpasswordController || POST
+// forgotpasswordController 
 export const forgotpasswordController = async (req, res) => {
     try {
         const { email, answer, newPassword } = req.body;
@@ -187,60 +188,6 @@ export const updateProfileController = async (req, res) => {
         res.status(400).send({
             success: false,
             message: "Error WHile Update profile",
-            error,
-        });
-    }
-};
-
-//orders
-export const getOrdersController = async (req, res) => {
-    try {
-        const orders = await orderModle
-            .find({ buyer: req.user._id })
-            .populate("products", "-photo")
-            .populate("buyer", "name");
-        res.json(orders);
-    } catch (error) {
-        console.log(error);
-        res.status(500).send({
-            success: false,
-            message: "Error WHile Geting Orders",
-            error,
-        });
-    }
-};
-//orders
-export const getAllOrdersController = async (req, res) => {
-    try {
-        const orders = await orderModle.find({}).populate("products", "-photo").populate("buyer", "name").sort({ createdAt: "-1" });
-        res.json(orders);
-    } catch (error) {
-        console.log(error);
-        res.status(500).send({
-            success: false,
-            message: "Error WHile Geting Orders",
-            error,
-        });
-    }
-};
-
-
-//order status
-export const orderStatusController = async (req, res) => {
-    try {
-        const { orderId } = req.params;
-        const { status } = req.body;
-        const orders = await orderModle.findByIdAndUpdate(
-            orderId,
-            { status },
-            { new: true }
-        );
-        res.json(orders);
-    } catch (error) {
-        console.log(error);
-        res.status(500).send({
-            success: false,
-            message: "Error While Updateing Order",
             error,
         });
     }

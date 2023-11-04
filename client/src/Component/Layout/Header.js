@@ -34,38 +34,42 @@ const Header = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <Link to={`${auth?.user ? `/dashboard/${auth?.user?.role === 2 ? `admin` : `user`}` : "/"}`} className="navbar-brand">
-              Employee Mnagement
+              Employee Mnagement For IPANGRAM
             </Link>
             {
               auth?.user ?
                 <>
-                  <Search />
+
 
                   <ul className="navbar-nav mb-2 mb-lg-0" style={{ marginLeft: "45%" }}>
+                    {
+                      auth?.user?.role === 2 ?
+                        <>
+                          <Search />
+                          <li className="nav-item dropdown">
+                            <Link className="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                              Departments
+                            </Link>
+                            <ul className="dropdown-menu">
+                              <li>
+                                <Link to={"/alldepartment"} className="dropdown-item">All Department</Link>
+                              </li>
+                              {
+                                departments?.map((item) => {
+                                  return <li key={item._id}><Link to={`/department/${item.slug}`} className="dropdown-item" >{item?.name}</Link></li>
+                                })
+                              }
 
+                            </ul>
+                          </li>
+                        </> : ""}
                     <li className="nav-item">
 
                       <NavLink to={`/dashboard/${auth?.user?.role === 2 ? `admin` : `user`}`} className="nav-link ">
                         Dashboard
                       </NavLink>
                     </li>
-                    <li className="nav-item dropdown">
 
-                      <Link className="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                        Departments
-                      </Link>
-                      <ul className="dropdown-menu">
-                        <li>
-                          <Link to={"/alldepartment"} className="dropdown-item">All Products</Link>
-                        </li>
-                        {
-                          departments?.map((item) => {
-                            return <li key={item._id}><Link to={`/department/${item.slug}`} className="dropdown-item" >{item?.name}</Link></li>
-                          })
-                        }
-
-                      </ul>
-                    </li>
                     <li className="nav-item dropdown">
                       <NavLink
                         className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">

@@ -3,12 +3,12 @@ import { createContext, useContext, useState } from "react";
 const SearchContext = createContext();
 
 const SearchProvider = ({ children }) => {
-    const [product, setProduct] = useState({
+    const [employee, setEmployee] = useState({
         keyword: '',
         results: []
     });
     return (
-        <SearchContext.Provider value={[product, setProduct]}>
+        <SearchContext.Provider value={[employee, setEmployee]}>
             {children}
         </SearchContext.Provider>
     )

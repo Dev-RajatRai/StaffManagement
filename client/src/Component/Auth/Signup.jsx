@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from 'axios';
-import { Link, redirect, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Radio, Select } from "antd";
 import Layout from "../Layout/Layout";
@@ -67,8 +67,8 @@ const Register = () => {
                     </div>
                     <div className="mb-3  text-center " >
                         <Radio.Group onChange={(e) => setRole(e.target.value)}  >
-                            <Radio value={1}  >Employee</Radio>
-                            <Radio value={2} >Manager</Radio>
+                            <Radio value={1} onClick={() => setDepartment("")}>Employee</Radio>
+                            <Radio value={2} onClick={() => setDepartment("Manager")}>Manager</Radio>
                         </Radio.Group>
                     </div>
                     {
@@ -104,7 +104,9 @@ const Register = () => {
                     <div className="mb-3" >
                         <input type="tel"
                             value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
+                            pattern="\d{10}"
+                            maxLength={10}
+                            onChange={e => setPhone(e.target.value.replace(/[^0-9]/g, ""))}
                             placeholder="Enter Your Phone Number"
                             className="form-control"
                             id="exampleInputPhone"

@@ -34,7 +34,8 @@ const employeeModal = new mongoose.Schema({
     },
     department: {
         type: String,
-        trim: true
+        trim: true,
+        required: true
     }
 }, { timestamps: true })
 export default mongoose.model('Employee', employeeModal)
