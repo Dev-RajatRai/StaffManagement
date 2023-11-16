@@ -34,8 +34,7 @@ const Header = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <Link to={`${auth?.user ? `/dashboard/${auth?.user?.role === 2 ? `admin` : `user`}` : "/"}`} className="navbar-brand">
-              Employee Mnagement For IPANGRAM
-            </Link>
+              Employee Mnagement</Link>
             {
               auth?.user ?
                 <>
